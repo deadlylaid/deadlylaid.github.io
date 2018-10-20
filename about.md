@@ -1,13 +1,17 @@
 ---
 layout: page
-title: About
+title: About Me
 sidebar_link: true
 ---
+<br>
 
-<p class="message">
-  Hey there! This page is included as an example. Feel free to customize it
-  for your own use upon downloading. Carry on!
-</p>
+![haminsoo]({{site.url}}/assets/img/minsoo.jpeg){: width="200px"}
 
-To make pages show up in the sidebar, add `sidebar_link: true` to the front
-matter.
+
+### 한민수
+- 1992.10.26
+
+
+#### My Skill
+- python
+- go(begginer)
