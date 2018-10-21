@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-20T14:23:11+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jade Han</title><subtitle>나의 이야기</subtitle><author><name>Jade Han</name></author><entry><title type="html">[MySQL] Query Basic</title><link href="http://localhost:4000/2018/10/20/mysql-query-basic.html" rel="alternate" type="text/html" title="[MySQL] Query Basic" /><published>2018-10-20T00:00:00+09:00</published><updated>2018-10-20T00:00:00+09:00</updated><id>http://localhost:4000/2018/10/20/%5Bmysql%5Dquery-basic</id><content type="html" xml:base="http://localhost:4000/2018/10/20/mysql-query-basic.html">&lt;p&gt;애초에 SQL공부를 열심히 한 적이 없었지만, 최근 ORM에 익숙해지면서 SQL사용이 점점더 힘들어지게 되었다.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-21T19:32:23+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jade Han</title><subtitle>나의 이야기</subtitle><author><name>Jade Han</name></author><entry><title type="html">[MySQL] Query Basic</title><link href="http://localhost:4000/2018/10/20/mysql-query-basic.html" rel="alternate" type="text/html" title="[MySQL] Query Basic" /><published>2018-10-20T00:00:00+09:00</published><updated>2018-10-20T00:00:00+09:00</updated><id>http://localhost:4000/2018/10/20/%5Bmysql%5Dquery-basic</id><content type="html" xml:base="http://localhost:4000/2018/10/20/mysql-query-basic.html">&lt;p&gt;애초에 SQL공부를 열심히 한 적이 없었지만, 최근 ORM에 익숙해지면서 SQL사용이 점점더 힘들어지게 되었다.&lt;/p&gt;
 
 &lt;p&gt;해당 포스트는 블로그 포스팅 식으로 진행될 것이 아니라, 쿼리 공부를 통해 지속적으로 업데이트 될 포스트이다.&lt;/p&gt;
 
@@ -40,4 +40,64 @@
 &lt;/table&gt;
 
 &lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CITY&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;population&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100000&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;countrycode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'USA'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Jade Han</name></author><category term="sql" /><summary type="html">Mysql query 기초</summary></entry><entry><title type="html">블로그를 사용하는 방법에 대하여</title><link href="http://localhost:4000/2018/10/18/jade.html" rel="alternate" type="text/html" title="블로그를 사용하는 방법에 대하여" /><published>2018-10-18T01:13:31+09:00</published><updated>2018-10-18T01:13:31+09:00</updated><id>http://localhost:4000/2018/10/18/jade</id><content type="html" xml:base="http://localhost:4000/2018/10/18/jade.html">&lt;p&gt;난 왜 이것을 하는가?&lt;/p&gt;</content><author><name>Jade Han</name></author><category term="post" /><summary type="html">블로그란 무엇인가?</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;문제-2&quot;&gt;문제 2.&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Query a list of CITY names from STATION with even ID numbers only. You may print the results in any order, but must exclude duplicates from your answer.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Field&lt;/th&gt;
+      &lt;th&gt;Type&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ID&lt;/td&gt;
+      &lt;td&gt;NUMBER&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;CITY&lt;/td&gt;
+      &lt;td&gt;VARCHAR2(21)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;COUNTRYCODE&lt;/td&gt;
+      &lt;td&gt;VARCHAR2(2)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;LAT_N&lt;/td&gt;
+      &lt;td&gt;NUMBER&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;LONG_W&lt;/td&gt;
+      &lt;td&gt;NUMBER&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;distinct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;city&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;station&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*OR*/&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;city&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;station&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;group&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;city&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;distinct나 group by를 사용해서 해결한다.&lt;sup id=&quot;fnref:footnote1&quot;&gt;&lt;a href=&quot;#fn:footnote1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;문제-3&quot;&gt;문제 3.&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;N&lt;/script&gt; be the number of CITY entries in STATION, and let &lt;script type=&quot;math/tex&quot;&gt;N'&lt;/script&gt; be the number of distinct CITY names in STATION; query the value of &lt;script type=&quot;math/tex&quot;&gt;N - N'&lt;/script&gt; from STATION. In other words, find the difference between the total number of CITY entries in the table and the number of distinct CITY entries in the table.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;city&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;distinct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;city&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;station&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:footnote1&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;http://intomysql.blogspot.com/2011/01/distinct-group-by.html&quot;&gt;distinct와 group by&lt;/a&gt; &lt;a href=&quot;#fnref:footnote1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Jade Han</name></author><category term="sql" /><summary type="html">Mysql query 기초</summary></entry><entry><title type="html">블로그를 사용하는 방법에 대하여</title><link href="http://localhost:4000/2018/10/18/jade.html" rel="alternate" type="text/html" title="블로그를 사용하는 방법에 대하여" /><published>2018-10-18T01:13:31+09:00</published><updated>2018-10-18T01:13:31+09:00</updated><id>http://localhost:4000/2018/10/18/jade</id><content type="html" xml:base="http://localhost:4000/2018/10/18/jade.html">&lt;p&gt;난 왜 이것을 하는가?&lt;/p&gt;</content><author><name>Jade Han</name></author><category term="post" /><summary type="html">블로그란 무엇인가?</summary></entry></feed>

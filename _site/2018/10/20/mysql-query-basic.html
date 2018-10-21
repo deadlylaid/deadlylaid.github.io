@@ -9,6 +9,8 @@
   <!-- Enable responsiveness on mobile devices-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
+  <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
   <title>
     
       [MySQL] Query Basic &middot; Jade Han
@@ -249,6 +251,66 @@
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">CITY</span> <span class="k">where</span> <span class="n">population</span><span class="o">&gt;</span><span class="mi">100000</span> <span class="k">and</span> <span class="n">countrycode</span><span class="o">=</span><span class="s1">'USA'</span><span class="p">;</span>
 </code></pre></div></div>
+
+<h3 id="문제-2">문제 2.</h3>
+
+<blockquote>
+  <p>Query a list of CITY names from STATION with even ID numbers only. You may print the results in any order, but must exclude duplicates from your answer.</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ID</td>
+      <td>NUMBER</td>
+    </tr>
+    <tr>
+      <td>CITY</td>
+      <td>VARCHAR2(21)</td>
+    </tr>
+    <tr>
+      <td>COUNTRYCODE</td>
+      <td>VARCHAR2(2)</td>
+    </tr>
+    <tr>
+      <td>LAT_N</td>
+      <td>NUMBER</td>
+    </tr>
+    <tr>
+      <td>LONG_W</td>
+      <td>NUMBER</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="k">distinct</span> <span class="n">city</span> <span class="k">from</span> <span class="n">station</span> <span class="k">where</span> <span class="n">id</span><span class="o">%</span><span class="mi">2</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="cm">/*OR*/</span>
+<span class="k">select</span> <span class="n">city</span> <span class="k">from</span> <span class="n">station</span> <span class="k">where</span> <span class="n">id</span><span class="o">%</span><span class="mi">2</span><span class="o">=</span><span class="mi">0</span> <span class="k">group</span> <span class="k">by</span> <span class="n">city</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>distinct나 group by를 사용해서 해결한다.<sup id="fnref:footnote1"><a href="#fn:footnote1" class="footnote">1</a></sup></p>
+
+<h3 id="문제-3">문제 3.</h3>
+<blockquote>
+  <p>Let <script type="math/tex">N</script> be the number of CITY entries in STATION, and let <script type="math/tex">N'</script> be the number of distinct CITY names in STATION; query the value of <script type="math/tex">N - N'</script> from STATION. In other words, find the difference between the total number of CITY entries in the table and the number of distinct CITY entries in the table.</p>
+</blockquote>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="n">city</span><span class="p">)</span> <span class="o">-</span> <span class="k">count</span><span class="p">(</span><span class="k">distinct</span> <span class="n">city</span><span class="p">)</span> <span class="k">from</span> <span class="n">station</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:footnote1">
+      <p><a href="http://intomysql.blogspot.com/2011/01/distinct-group-by.html">distinct와 group by</a> <a href="#fnref:footnote1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
     
 
