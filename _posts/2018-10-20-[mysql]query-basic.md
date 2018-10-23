@@ -69,8 +69,7 @@ select count(city) - count(distinct city) from station;
 ~~~
 
 union은 두 query의 결과를 합칠 때 이용한다.
-
-
+order by의 뒤에 오는 인자를 통해 정렬 순서를 결정한다. 다수의 인자일 경우 모두 반영한다.
 
 
 
