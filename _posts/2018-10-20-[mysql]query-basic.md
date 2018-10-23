@@ -59,5 +59,19 @@ distinct나 group by를 사용해서 해결한다.[^footnote1]
 select count(city) - count(distinct city) from station;
 ~~~
 
+### 문제 3.
+
+>Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.
+
+
+~~~sql
+(select city, length(city) from station order by length(city) city limit 1) union (select city, length(city) from station order by length(city) desc, city limit 1)
+~~~
+
+union은 두 query의 결과를 합칠 때 이용한다.
+
+
+
+
 
 
