@@ -313,7 +313,8 @@
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="k">select</span> <span class="n">city</span><span class="p">,</span> <span class="k">length</span><span class="p">(</span><span class="n">city</span><span class="p">)</span> <span class="k">from</span> <span class="n">station</span> <span class="k">order</span> <span class="k">by</span> <span class="k">length</span><span class="p">(</span><span class="n">city</span><span class="p">)</span> <span class="n">city</span> <span class="k">limit</span> <span class="mi">1</span><span class="p">)</span> <span class="k">union</span> <span class="p">(</span><span class="k">select</span> <span class="n">city</span><span class="p">,</span> <span class="k">length</span><span class="p">(</span><span class="n">city</span><span class="p">)</span> <span class="k">from</span> <span class="n">station</span> <span class="k">order</span> <span class="k">by</span> <span class="k">length</span><span class="p">(</span><span class="n">city</span><span class="p">)</span> <span class="k">desc</span><span class="p">,</span> <span class="n">city</span> <span class="k">limit</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>union은 두 query의 결과를 합칠 때 이용한다.</p>
+<p>union은 두 query의 결과를 합칠 때 이용한다.
+order by의 뒤에 오는 인자를 통해 정렬 순서를 결정한다. 다수의 인자일 경우 모두 반영한다.</p>
 
 <div class="footnotes">
   <ol>
@@ -382,9 +383,9 @@
     
       <li>
         <h3>
-          <a href="/2018/10/18/jade.html">
-            블로그를 사용하는 방법에 대하여
-            <small>18 Oct 2018</small>
+          <a href="/2018/10/27/amazon-ses-sendmail.html">
+            [Amazon] Amazon SES를 통한 메일발송
+            <small>27 Oct 2018</small>
           </a>
         </h3>
       </li>

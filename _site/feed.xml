@@ -1,4 +1,107 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-23T23:53:55+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jade Han</title><subtitle>나의 이야기</subtitle><author><name>Jade Han</name></author><entry><title type="html">[MySQL] Query Basic</title><link href="http://localhost:4000/2018/10/20/mysql-query-basic.html" rel="alternate" type="text/html" title="[MySQL] Query Basic" /><published>2018-10-20T00:00:00+09:00</published><updated>2018-10-20T00:00:00+09:00</updated><id>http://localhost:4000/2018/10/20/%5Bmysql%5Dquery-basic</id><content type="html" xml:base="http://localhost:4000/2018/10/20/mysql-query-basic.html">&lt;p&gt;애초에 SQL공부를 열심히 한 적이 없었지만, 최근 ORM에 익숙해지면서 SQL사용이 점점더 힘들어지게 되었다.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-27T00:25:53+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jade Han</title><subtitle>나의 이야기</subtitle><author><name>Jade Han</name></author><entry><title type="html">[Amazon] Amazon SES를 통한 메일발송</title><link href="http://localhost:4000/2018/10/27/amazon-ses-sendmail.html" rel="alternate" type="text/html" title="[Amazon] Amazon SES를 통한 메일발송" /><published>2018-10-27T00:00:00+09:00</published><updated>2018-10-27T00:00:00+09:00</updated><id>http://localhost:4000/2018/10/27/amazon-ses-sendmail</id><content type="html" xml:base="http://localhost:4000/2018/10/27/amazon-ses-sendmail.html">&lt;h1 id=&quot;amazon-ses--sendmail&quot;&gt;Amazon SES + sendmail&lt;/h1&gt;
+
+&lt;p&gt;Amazon SES에서 이메일 전송 방법에는 3가지 방법이 있습니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;콘솔을 통한 이메일 발송
+    &lt;ul&gt;
+      &lt;li&gt;최소 설정으로 테스트 메일을 발송해보려면 이 방법을 사용하는 것이 가장 효율적입니다.
+테스트에 성공하여 프로덕션 이메일 전송을 시작할 준비가 되면 다른 2개의 방법 중 하나를 사용하도록 합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;SMTP를 사용
+    &lt;ul&gt;
+      &lt;li&gt;Amazon SES SMTP 인터페이스를 통해 이메일을 전송할 수 있습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;AWS SDK를 사용
+    &lt;ul&gt;
+      &lt;li&gt;AWS SDK API를 호출하여 이메일을 전송합니다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;console을-통한-이메일-발송&quot;&gt;Console을 통한 이메일 발송&lt;/h2&gt;
+
+&lt;p&gt;Amazon SES에서 할 수 있는 이메일 발송 방법 중 가장 쉬운 방법이며, 사용자가 수동으로 입력해야하므로 &lt;strong&gt;테스트 용으로만 사용하도록 합니다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;AWS Management 콘솔에 로그인 한 후 https://console.aws.amazon.com/ses/ 에서 Amazon SES 콘솔을 엽니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;[&lt;strong&gt;Identity Management&lt;/strong&gt;] 아래에서 [&lt;strong&gt;Email Addresses&lt;/strong&gt;] 선택한 후 [&lt;strong&gt;Verify a New Email Address&lt;/strong&gt;]버튼을 통해 이메일을 등록합니다.&lt;/li&gt;
+  &lt;li&gt;메일함에 온 인증메일을 통해 확인절차를 거칩니다.&lt;/li&gt;
+  &lt;li&gt;[&lt;strong&gt;Send a Test Email&lt;/strong&gt;] 을 선택하여 [&lt;strong&gt;Email Format&lt;/strong&gt;]을 선택하고 formatted 옵션에 등록된 이메일 주소로 테스트 메일을 전송해봅니다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;amazon-ses-smtp를-이용하여-이메일-전송&quot;&gt;Amazon SES SMTP를 이용하여 이메일 전송&lt;/h2&gt;
+
+&lt;h3 id=&quot;amazon-ses-smtp-자격-증명받기&quot;&gt;Amazon SES SMTP 자격 증명받기&lt;/h3&gt;
+
+&lt;p&gt;SMTP인터페이스에 접근하기 위해서는 사용자 이름과 암호가 필요합니다. 모든 리전에서 동일한 smtp자격 증명 세트를 사용할 수 있습니다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;AWS 자격증명과, smtp 자격증명은 서로 다른 개념입니다.
+ AWS자격증명이 있다고 하여, smtp 인터페이스에 액세스 할 수 있는 것은 아닙니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;smtp 자격증명을 받는 방법은 2가지로 나뉩니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Amazon SES console을 통해 자격증명&lt;/li&gt;
+  &lt;li&gt;AWS 자격증명에 SMTP 자격증명을 추가&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;console을 이용한 자격증명만을 설명합니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;AWS Management console에 로그인하여 SES console로 이동합니다.&lt;/li&gt;
+  &lt;li&gt;region을 선택한 후 탐색창에서 [&lt;strong&gt;SMTP Settings&lt;/strong&gt;]를 선택합니다.&lt;/li&gt;
+  &lt;li&gt;콘텐츠 창에서 [&lt;strong&gt;Create My SMTP Creditionals&lt;/strong&gt;]를 선택합니다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Create User for SMTP&lt;/strong&gt;를 클릭하여 사용자를 생성합니다.&lt;/li&gt;
+  &lt;li&gt;[&lt;strong&gt;Show User SMTP Credentials&lt;/strong&gt;]를 선택하여 자격증명 파일을 다운로드 받습니다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;확인되지-않은-이메일-주소로-메일을-보내는-방법&quot;&gt;확인되지 않은 이메일 주소로 메일을 보내는 방법&lt;/h2&gt;
+
+&lt;p&gt;위의 절차를 통해 smtp인터페이스에 접근하여 메일 발송을 할 경우 SandBox 환경에 속해 있는 계정만이 이메일을 송/수신 할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;SMTP 자격증명이 있고, SandBox에 배치된 계정들은 Amazon SES의 거의 모든 기능을 사용할 수 있지만 4가지 제약을 갖습니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;확인된 메일주소, 도메인&lt;strong&gt;으로만&lt;/strong&gt; 메일을 보낼 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;확인된 메일주소, 도메인&lt;strong&gt;에서만&lt;/strong&gt; 메일을 보낼 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;24시간 동안 최대 200개의 메시지를 보낼 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;초당 최대 1개의 메시지를 보낼 수 있습니다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;위와 같은 제약사항으로 인해 SandBox에서 삭제해 줄 것을 요청해야합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;amazon-ses-sandbox환경에서-나가기&quot;&gt;Amazon SES SandBox환경에서 나가기&lt;/h2&gt;
+
+&lt;p&gt;확인되지 않은 이메일 주소로 메일을 보내고, 하루에 보낼 수 있는 메일의 수와 발송 속도를 높히기 위해서는 SandBox환경에서 계정을 전환해야합니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;AWS Managemet console에 로그인 한 후 SES Console로 이동합니다.&lt;/li&gt;
+  &lt;li&gt;지원 센터에서 SES Sending Limits Increase case를 엽니다.&lt;/li&gt;
+  &lt;li&gt;양식에 노출되는 섹션 중 몇 가지를 설명합니다.
+    &lt;ol&gt;
+      &lt;li&gt;region : 이메일을 보내기 위해 사용할 AWS Region입니다.&lt;/li&gt;
+      &lt;li&gt;Limit : &lt;strong&gt;Desired Daily Sending Quota&lt;/strong&gt;(일일 발신 할당량), &lt;strong&gt;Desired Maximum Send Rate&lt;/strong&gt;(필요한 최대 전송 속도)를 선택합니다.&lt;/li&gt;
+      &lt;li&gt;New limit value : 생신하고 싶은 발신 할당량, 전송 속도를 입력합니다.(기본값은 최대 200개의 메시지, 초당 1개의 메시지입니다.)&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;[&lt;strong&gt;Submit&lt;/strong&gt;]을 클릭합니다.&lt;/li&gt;
+  &lt;li&gt;요청을 검토하는데 1일이 소요되며 SES Sending Limits Increase 요청에 대한 통신문을 받으면 요청이 승인되었음을 나타냅니다.&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Jade Han</name></author><category term="Amazon" /><summary type="html">smtp를 이용하여 이메일 발송을 해본다.</summary></entry><entry><title type="html">[MySQL] Query Basic</title><link href="http://localhost:4000/2018/10/20/mysql-query-basic.html" rel="alternate" type="text/html" title="[MySQL] Query Basic" /><published>2018-10-20T00:00:00+09:00</published><updated>2018-10-20T00:00:00+09:00</updated><id>http://localhost:4000/2018/10/20/%5Bmysql%5Dquery-basic</id><content type="html" xml:base="http://localhost:4000/2018/10/20/mysql-query-basic.html">&lt;p&gt;애초에 SQL공부를 열심히 한 적이 없었지만, 최근 ORM에 익숙해지면서 SQL사용이 점점더 힘들어지게 되었다.&lt;/p&gt;
 
 &lt;p&gt;해당 포스트는 블로그 포스팅 식으로 진행될 것이 아니라, 쿼리 공부를 통해 지속적으로 업데이트 될 포스트이다.&lt;/p&gt;
 
@@ -103,7 +206,8 @@
 &lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;city&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;city&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;station&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;city&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;city&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;limit&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;union&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;city&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;city&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;station&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;city&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;desc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;city&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;limit&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;union은 두 query의 결과를 합칠 때 이용한다.&lt;/p&gt;
+&lt;p&gt;union은 두 query의 결과를 합칠 때 이용한다.
+order by의 뒤에 오는 인자를 통해 정렬 순서를 결정한다. 다수의 인자일 경우 모두 반영한다.&lt;/p&gt;
 
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;
@@ -111,4 +215,4 @@
       &lt;p&gt;&lt;a href=&quot;http://intomysql.blogspot.com/2011/01/distinct-group-by.html&quot;&gt;distinct와 group by&lt;/a&gt; &lt;a href=&quot;#fnref:footnote1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Jade Han</name></author><category term="sql" /><summary type="html">Mysql query 기초</summary></entry><entry><title type="html">블로그를 사용하는 방법에 대하여</title><link href="http://localhost:4000/2018/10/18/jade.html" rel="alternate" type="text/html" title="블로그를 사용하는 방법에 대하여" /><published>2018-10-18T01:13:31+09:00</published><updated>2018-10-18T01:13:31+09:00</updated><id>http://localhost:4000/2018/10/18/jade</id><content type="html" xml:base="http://localhost:4000/2018/10/18/jade.html">&lt;p&gt;난 왜 이것을 하는가?&lt;/p&gt;</content><author><name>Jade Han</name></author><category term="post" /><summary type="html">블로그란 무엇인가?</summary></entry></feed>
+&lt;/div&gt;</content><author><name>Jade Han</name></author><category term="sql" /><summary type="html">Mysql query 기초</summary></entry></feed>
