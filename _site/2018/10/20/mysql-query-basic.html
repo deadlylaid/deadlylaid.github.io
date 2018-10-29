@@ -304,7 +304,7 @@
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="n">city</span><span class="p">)</span> <span class="o">-</span> <span class="k">count</span><span class="p">(</span><span class="k">distinct</span> <span class="n">city</span><span class="p">)</span> <span class="k">from</span> <span class="n">station</span><span class="p">;</span>
 </code></pre></div></div>
 
-<h3 id="문제-3-1">문제 3.</h3>
+<h3 id="문제-4">문제 4.</h3>
 
 <blockquote>
   <p>Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.</p>
@@ -316,6 +316,14 @@
 <p>union은 두 query의 결과를 합칠 때 이용한다.
 order by의 뒤에 오는 인자를 통해 정렬 순서를 결정한다. 다수의 인자일 경우 모두 반영한다.</p>
 
+<h3 id="문제-5">문제 5.</h3>
+
+<blockquote>
+  <p>Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates.</p>
+</blockquote>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="k">distinct</span> <span class="n">city</span> <span class="k">from</span> <span class="n">station</span> <span class="k">where</span> <span class="n">city</span> <span class="k">like</span> <span class="nv">"a%"</span> <span class="k">or</span> <span class="n">city</span> <span class="k">like</span> <span class="nv">"e%"</span> <span class="k">or</span> <span class="n">city</span> <span class="k">like</span> <span class="nv">"i%"</span> <span class="k">or</span> <span class="n">city</span> <span class="k">like</span> <span class="nv">"o%"</span> <span class="k">or</span> <span class="n">city</span> <span class="k">like</span> <span class="nv">"u%"</span><span class="p">;</span>
+</code></pre></div></div>
 <div class="footnotes">
   <ol>
     <li id="fn:footnote1">
@@ -380,6 +388,15 @@ order by의 뒤에 오는 인자를 통해 정렬 순서를 결정한다. 다수
   <section class="related">
   <h2>Related Posts</h2>
   <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/2018/10/29/coin-wallet.html">
+            [BlockChain] 암호화폐 지갑
+            <small>29 Oct 2018</small>
+          </a>
+        </h3>
+      </li>
     
       <li>
         <h3>

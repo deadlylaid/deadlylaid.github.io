@@ -59,7 +59,7 @@ distinct나 group by를 사용해서 해결한다.[^footnote1]
 select count(city) - count(distinct city) from station;
 ~~~
 
-### 문제 3.
+### 문제 4.
 
 >Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.
 
@@ -73,4 +73,11 @@ order by의 뒤에 오는 인자를 통해 정렬 순서를 결정한다. 다수
 
 
 
+### 문제 5.
 
+> Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates.
+
+
+~~~sql
+select distinct city from station where city like "a%" or city like "e%" or city like "i%" or city like "o%" or city like "u%";
+~~~

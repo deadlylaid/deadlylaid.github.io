@@ -1,4 +1,124 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-27T00:25:53+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jade Han</title><subtitle>나의 이야기</subtitle><author><name>Jade Han</name></author><entry><title type="html">[Amazon] Amazon SES를 통한 메일발송</title><link href="http://localhost:4000/2018/10/27/amazon-ses-sendmail.html" rel="alternate" type="text/html" title="[Amazon] Amazon SES를 통한 메일발송" /><published>2018-10-27T00:00:00+09:00</published><updated>2018-10-27T00:00:00+09:00</updated><id>http://localhost:4000/2018/10/27/amazon-ses-sendmail</id><content type="html" xml:base="http://localhost:4000/2018/10/27/amazon-ses-sendmail.html">&lt;h1 id=&quot;amazon-ses--sendmail&quot;&gt;Amazon SES + sendmail&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-29T21:51:21+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jade Han</title><subtitle>나의 이야기</subtitle><author><name>Jade Han</name></author><entry><title type="html">[BlockChain] 암호화폐 지갑</title><link href="http://localhost:4000/2018/10/29/coin-wallet.html" rel="alternate" type="text/html" title="[BlockChain] 암호화폐 지갑" /><published>2018-10-29T00:00:00+09:00</published><updated>2018-10-29T00:00:00+09:00</updated><id>http://localhost:4000/2018/10/29/coin-wallet</id><content type="html" xml:base="http://localhost:4000/2018/10/29/coin-wallet.html">&lt;h2 id=&quot;암호화폐-지갑에-대한-이해&quot;&gt;암호화폐 지갑에 대한 이해&lt;/h2&gt;
+
+&lt;h3 id=&quot;part-1-라이트-코인-지갑&quot;&gt;Part 1. 라이트 코인 지갑&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;내가 암호화폐를 처음 시작했을 때, 지갑과 주소의 의미를 이해하지 못한채 사용하는 바람에 수백달러 수준의 코인을 날려버린적이 있다. 다른 이들은 나와같은 상황을 겪지 않았으면 좋겠다. 그리고 라이트코인 지갑이 무엇인지 알아보는 시간을 갖으려한다. - Ecurrency Hodler&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;라이트코인-지갑은-무엇인가&quot;&gt;라이트코인 지갑은 무엇인가?&lt;/h4&gt;
+
+&lt;p&gt;우리가 수중에 들고다니는 지갑은 현금을 넣고 보관하는 용도로만 쓰이지만, 라이트코인 지갑은 현재 보관하고 있는 라이트코인을 관리하는 일도 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;이해를 돕기위해 라이트코인 지갑을 이메일 계정이라고 가정한다. 이메일 계정을 통해서 메일을 주고 받는 일을 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/email.png&quot; alt=&quot;email&quot; class=&quot;img-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;라이트코인 지갑도 이처럼 라이트코인을 주고 받을 수 있고, 그 외에 5가지의 특별한 기능을 갖고 있다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;개인키를 생성해준다.&lt;/li&gt;
+  &lt;li&gt;개인키를 이용해 공개키를 생성해준다.&lt;/li&gt;
+  &lt;li&gt;공개키를 이용해 주소를 만들어준다.&lt;/li&gt;
+  &lt;li&gt;거래를 승인하고 라이트코인을 보낸다. 이는 개인키로 만들어진 특별한 서명으로 거래증명 절차를 거치면서 이루어진다.&lt;/li&gt;
+  &lt;li&gt;라이트코인(LTC) 블록체인 네트워크에 해당 정보들을 공유하는 역할을 한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;주소가-무엇인가&quot;&gt;주소가 무엇인가?&lt;/h4&gt;
+
+&lt;p&gt;앞서 &lt;code class=&quot;highlighter-rouge&quot;&gt;공개키를 이용해서 주소를 만들어준다&lt;/code&gt;고 했는데 이 주소는 무엇일까?&lt;/p&gt;
+
+&lt;p&gt;지메일 계정으로 가정하면, 해당 주소는 이메일 주소로 볼 수 있다. 이메일 주소를 통해 메일을 보내듯, 라이트코인 주소를 이용하면 메일을 라이트코인을 전송할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;주의해야할 점은 반드시 &lt;strong&gt;라이트코인 주소가 정확히 기입되었는지 확인해야한다는 것&lt;/strong&gt;이다. 블록체인 특성상 한번 거래가 이루어지면 번복하는 것이 불가능하기 때문이다.&lt;/p&gt;
+
+&lt;h4 id=&quot;개인키는-무엇인가&quot;&gt;개인키는 무엇인가?&lt;/h4&gt;
+
+&lt;p&gt;개인키는 지메일 계정으로 비유했을 때, 계정에 대한 비밀번호라고 생각할 수 있다. 라이트코인 지갑에서 라이트코인을 특정 주소로 보내기 위해서는 내가 갖고 있는 주소의 개인키를 알고 있어야한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;코인-지갑을-삭제하면-내가-갖고있던-코인들도-영원히-사라지는-것인가&quot;&gt;코인 지갑을 삭제하면 내가 갖고있던 코인들도 영원히 사라지는 것인가?&lt;/h4&gt;
+
+&lt;p&gt;아니다. 라이트코인 지갑은 삭제, 설령 잃어버리는 한이 있다고 한들 코인은 복구할 수 있다. 메일과 비슷하게 지갑을 지우게 되면 지갑에 접근하지 못할 뿐이다. 지갑 주소와 개인키만 갖고 있으면, 이메일에 로그인하는 것과 비슷하게 지갑에 있는 코인에 접근할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;part-2-myetherwallet의-설명&quot;&gt;Part 2. MyEtherWallet의 설명&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;최근 구글링하다가 발견한 MyEtherWallet이라는 지갑을 발견했는데, 자신들의 제품을 암호화폐 및 블록체인에 대한 가벼운 설명과 함께 부드럽게 설명한 글이 있어 정리해본다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;myetherwalletmew은-암호화폐-거래가-가능한-오픈소스-인터페이스다&quot;&gt;MyEtherWallet(MEW)은 암호화폐 거래가 가능한 오픈소스 인터페이스다.&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;MEW에서 계정을 만들면 암호화된 숫자집합이 생성된다. 이는 개인키, 공개키로 구성되어있다.&lt;/li&gt;
+  &lt;li&gt;키 핸들링은 컴퓨터와 브라우저에서 처리된다.&lt;/li&gt;
+  &lt;li&gt;NEW는 무슨 일이 있더라도 고객의 개인키나 패스워드 심지어는 거래정보까지도 요구하거나 제공하는 일을 하지 않는다.&lt;/li&gt;
+  &lt;li&gt;그저 NEW인터페이스를 이용해서 블록체인을 다룰 수 있다.&lt;/li&gt;
+  &lt;li&gt;타인에게 &lt;strong&gt;공개키&lt;/strong&gt;를 제공하면, 받은 사람은 ETH나 토큰을 보낼 수 있다.&lt;/li&gt;
+  &lt;li&gt;타인에게 &lt;strong&gt;개인키&lt;/strong&gt;를 제공하면, 받은 사람은 당신의 계정 자체를 조작할지도 모른다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;일단-블록체인은-도대체-무엇인가&quot;&gt;일단 블록체인은 도대체 무엇인가?&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/sheets.svg&quot; alt=&quot;blockchainsheet&quot; width=&quot;200px&quot; class=&quot;img-center&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;블록체인은 거대한 분선 장부라고 보면된다.&lt;/li&gt;
+  &lt;li&gt;전 세계적으로 특수한 컴퓨터를 보유한 수천명의 사람들(마이너)에게 관리된다.&lt;/li&gt;
+  &lt;li&gt;블록체인에 있는 각각의 블록들은 MEW, MetaMask, Mist, Geth, Parity 등에서 보낸 개인 장부들로 구성된다.&lt;/li&gt;
+  &lt;li&gt;개개인의 거래 내역들은 NEW 서버에서 볼 수 있는 것이 아니라, 블록체인에 존재하는 데이터를 보는 것이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;myehterwallet이-갖고-있는-한계점&quot;&gt;MyEhterWallet이 갖고 있는 한계점&lt;/h4&gt;
+
+&lt;p&gt;NEW는 은행이 아니기 때문에 아래와 같은 일을 해줄 수 없다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;계정관리와 펀드 투자에 대한 안내&lt;/li&gt;
+  &lt;li&gt;개키를 잃어버렸을 때 대응해주는 행위&lt;/li&gt;
+  &lt;li&gt;비밀번호를 잃어버렸을 때 대응해주는 행위&lt;/li&gt;
+  &lt;li&gt;거래을 취소하거나, 대신해주는 행위&lt;/li&gt;
+  &lt;li&gt;계정동결&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;계정보안은 오직 개개인이 스스로 해야한다.&lt;/p&gt;
+
+&lt;p&gt;특히 개인의 계정정보에 대한 문제가 생겼을 경우 아무도 도와줄 수 없음을 명심해야한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;그럼-myetherwallet의-장점이-없는-것처럼-보이는데&quot;&gt;그럼 MyEtherWallet의 장점이 없는 것처럼 보이는데?&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;MEW의 초점은 분산화와 블록체인에 있다.&lt;/li&gt;
+  &lt;li&gt;개인이 투자하려고 하는데, 정부나 은행에 의존할 필요가 없다.&lt;/li&gt;
+  &lt;li&gt;은행의 개인정보 유출이나 보안 문제때문에 두려움에 떨 필요가 없다.&lt;/li&gt;
+  &lt;li&gt;위에서 말한 내용이 그다지 장점이라고 생각되지 않는다면, 스스로 블록체인과 암호화폐들이 왜 가치가 있는지 자문해보는 걸 추천한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;part-3-암호화폐-지갑의-종류들&quot;&gt;Part 3. 암호화폐 지갑의 종류들&lt;/h3&gt;
+
+&lt;h4 id=&quot;1-거래소-지갑&quot;&gt;1. 거래소 지갑&lt;/h4&gt;
+
+&lt;p&gt;코인 거래소에서 제공해주는 계정안에 포함되어있는 지갑을 말한다. 사용이 간편하고 편리하기 때문에 일반적으로 이용되는 방법이지만, 개인키에 대한 접근권한이 없고 거래소를 이용한다는 개념 자체가 은행이 제공하는 중앙화와 별 다를바 없기 때문에 오히려 보안적인 측면에서 은행보다 위험할 수 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;2-데스크탑-지갑&quot;&gt;2. 데스크탑 지갑&lt;/h4&gt;
+
+&lt;p&gt;블록체인 전체를 컴퓨터에 다운로드해서 이용하는 방식 보안적인 측면에서 뛰어나지만 블록체인의 규모가 거대할 경우 용량이 지나치게 거대해질 수 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;3-하드웨어-지갑&quot;&gt;3. 하드웨어 지갑&lt;/h4&gt;
+
+&lt;p&gt;HDD나 USB같은 하드웨어 장치에 코인을 보관하는 방법, 코인에 접근하는 방법은 하드웨어를 통하는 방법 밖에없다.&lt;/p&gt;
+
+&lt;h4 id=&quot;4-종이-지갑&quot;&gt;4. 종이 지갑&lt;/h4&gt;
+
+&lt;p&gt;온라인 주소 생성기를 통해 주소를 생성한 다음, 인쇄로 출력하여 보관하는 방법이다. 온라인상에 저장되지 않기 때문에 보안에 가장 안전한 방법이라고 알려져 있다. 하지만 오프라인 세계로 나와 있는 만큼 인쇄된 종이를 잃어버리거나 훼손할 경우 코인을 잃어버리는 문제가 발생할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;sources&quot;&gt;Sources:&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://medium.com/the-litecoin-school-of-crypto/2-understanding-wallets-8e1967ce8459&quot;&gt;https://medium.com/the-litecoin-school-of-crypto/2-understanding-wallets-8e1967ce8459&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.myetherwallet.com/&quot;&gt;https://www.myetherwallet.com/&lt;/a&gt;&lt;/p&gt;</content><author><name>Jade Han</name></author><category term="BlockChain" /><summary type="html">라이트코인 지갑, MyEhterWallet을 예로 암호화폐 지갑을 이해하려한다.</summary></entry><entry><title type="html">[Amazon] Amazon SES를 통한 메일발송</title><link href="http://localhost:4000/2018/10/27/amazon-ses-sendmail.html" rel="alternate" type="text/html" title="[Amazon] Amazon SES를 통한 메일발송" /><published>2018-10-27T00:00:00+09:00</published><updated>2018-10-27T00:00:00+09:00</updated><id>http://localhost:4000/2018/10/27/amazon-ses-sendmail</id><content type="html" xml:base="http://localhost:4000/2018/10/27/amazon-ses-sendmail.html">&lt;h1 id=&quot;amazon-ses--sendmail&quot;&gt;Amazon SES + sendmail&lt;/h1&gt;
 
 &lt;p&gt;Amazon SES에서 이메일 전송 방법에는 3가지 방법이 있습니다.&lt;/p&gt;
 
@@ -197,7 +317,7 @@
 &lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;city&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;distinct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;city&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;station&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;문제-3-1&quot;&gt;문제 3.&lt;/h3&gt;
+&lt;h3 id=&quot;문제-4&quot;&gt;문제 4.&lt;/h3&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.&lt;/p&gt;
@@ -209,6 +329,14 @@
 &lt;p&gt;union은 두 query의 결과를 합칠 때 이용한다.
 order by의 뒤에 오는 인자를 통해 정렬 순서를 결정한다. 다수의 인자일 경우 모두 반영한다.&lt;/p&gt;
 
+&lt;h3 id=&quot;문제-5&quot;&gt;문제 5.&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;distinct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;city&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;station&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;city&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;like&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;a%&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;city&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;like&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;e%&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;city&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;like&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;i%&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;city&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;like&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;o%&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;city&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;like&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;u%&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;
     &lt;li id=&quot;fn:footnote1&quot;&gt;
