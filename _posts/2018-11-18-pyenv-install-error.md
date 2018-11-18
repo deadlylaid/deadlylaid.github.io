@@ -53,7 +53,9 @@ zipimport.ZipImportError: can't decompress data; zlib not available
 ## xcode를 업데이트 후 생긴 변화(두번째 원인)
 
 `The Command Line Tools package`는 macOS에 `macOS system headers(헤더)`라는 것을 설치한다. 
-기본적으로 `command line tool` 은 SDK에서 헤더를 검색하는데 가끔 어떤 소프트웨어는 SDK가 아니라 `/usr/include/`에 헤더가 있지 않으면 정상적으로 빌드되지 않는 문제가 있다. 하지만 `Xcode Command Line tools` 는 더 이상 `usr/include` 에 필요한 헤더를 설치해주지 않았고 이 문제를 해결하기 위해서 `system headers` 기본 시스템에 추가하는 일을 해야한다
+기본적으로 `command line tool` 은 SDK에서 헤더를 검색하는데 가끔 어떤 소프트웨어는 SDK가 아니라 `/usr/include/`에 헤더가 있지 않으면 정상적으로 빌드되지 않는 문제가 있다. 하지만 `Xcode Command Line tools` 는 더 이상 `usr/include` 에 필요한 헤더를 설치해주지 않았고 이 문제를 해결하기 위해서 `system headers` 기본 시스템에 추가하는 일을 해야한다.[^footnote1]
+
+[^footnote1]: [Xcode 10 Release Notes](https://developer.apple.com/documentation/xcode_release_notes/xcode_10_release_notes)
 
 ```bash
 $ sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target 
