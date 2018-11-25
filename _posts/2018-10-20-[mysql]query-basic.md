@@ -80,3 +80,43 @@ order by의 뒤에 오는 인자를 통해 정렬 순서를 결정한다. 다수
 ~~~sql
 select distinct city from station where city like "a%" or city like "e%" or city like "i%" or city like "o%" or city like "u%";
 ~~~
+
+### 문제 8.(문제 5~7 까지는 거의 비슷한 문제라서 제외한다.)
+
+> STATION 테이블에서 CITY 이름의 양 끝에 모음(a,e,i,o,u)로 시작되는 값들을 구하라. 중복된 값이 있어선 안된다.
+
+~~~sql
+select distinct city from station where left(city, 1) in ("a", "e", "i", "o", "u") and right(city, 1) in ("a", "e", "i", "o", "u")
+~~~
+
+### 문제 9.
+
+> STATION 테이블에서 CITY 이름의 양 끝에 모음(a,e,i,o,u)로 시작되지 않는 값들을 구하라. 중복된 값이 있어선 안된다.
+
+~~~sql
+select distinct city from station where left(city, 1) not in ("a", "e", "i", "o", "u")
+~~~
+
+### 문제 11.
+
+> STATION 테이블에서 모음으로 시작하거나 혹은 모음으로 끝나는 CITY 값들을 구하라. 중복된 값이 있어선 안된다.
+
+~~~sql
+select distinct city from station where left(city, 1) not in ("a","e","i","o","u") or right(city, 1) not in ("a", "e", "i","o","u")
+~~~
+
+### 문제 75점보다 높다.
+
+> STUDENTS 테이블에서 75점보다 높은 학생들의 이름을 출력하라. 이름의 뒷자리에서부터 3자리의 철차를 이용해 오름차순으로 정렬하고, 해당 조건에서도 우선순위를 결정지을 수 없다면 ID값으로 오름차순 정렬하라
+
+~~~sql
+select Name from STUDENTS where Marks>75 order by right(Name, 3), ID
+~~~
+
+### 문제 직원 월급.
+
+> Employee 테이블에서 10개월 미만의 근무자 중, 월급이 $2000 보다 많은 직원들의 이름을 출력하라. employee_id 으로 오름차순 계산하라
+
+~~~sql
+select name from Employee where months<10 and salary>2000 order by employee_id
+~~~
