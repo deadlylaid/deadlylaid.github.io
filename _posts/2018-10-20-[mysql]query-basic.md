@@ -14,7 +14,7 @@ date: 2018-10-20
 
 ### 문제 1.
 
-> Query all columns for all American cities in CITY with populations larger than 100000. The CountryCode for America is USA.
+> CITY테이블에서 총 인구소가 100000을 초과하는 American city들을 모두 구하라. America의 CountryCode는 USA이다.
 
 | Field       | Type         |
 | ----------- | ------------ |
@@ -32,7 +32,7 @@ select * from CITY where population>100000 and countrycode='USA';
 
 ### 문제 2.
 
->Query a list of CITY names from STATION with even ID numbers only. You may print the results in any order, but must exclude duplicates from your answer.
+> STATION의 ID값이 짝수인 CITY 이름을 모두 구하라. 중복은 제거되어야한다. 
 
 | Field       | Type         |
 | ----------- | ------------ |
@@ -53,7 +53,7 @@ distinct나 group by를 사용해서 해결한다.[^footnote1]
 [^footnote1]: [distinct와 group by](http://intomysql.blogspot.com/2011/01/distinct-group-by.html)
 
 ### 문제 3.
->Let $$N$$ be the number of CITY entries in STATION, and let $$N'$$ be the number of distinct CITY names in STATION; query the value of $$N - N'$$ from STATION. In other words, find the difference between the total number of CITY entries in the table and the number of distinct CITY entries in the table.
+> STATION테이블에 있는 모든 CITY의 갯수를 $$N$$ 이라고 가정하고, and 중복된 이름들을 제거했을 때의 갯수는 $$N'$$ 이라고 가정하자; $$N - N'$$ 의 값을 구하라. 좀 더 자세히 설명하자면, 전체 CITY의 갯수와 중복값을 제거한 CITY의 갯수를 구하라.
 
 ~~~sql
 select count(city) - count(distinct city) from station;
@@ -61,7 +61,7 @@ select count(city) - count(distinct city) from station;
 
 ### 문제 4.
 
->Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.
+> STATION 테이블에서 CITY의 이름이 가장 긴 값과 가장 짧은 두 개를 구하라, 각각의 길이 역시 구해야한다. (즉, 철자의 갯수). 가장 작거나 큰 길이를 갖는 이름들이 여러개가 있다면, 알파벳 순서상 오름차순에 있는 이름을 선택해라.
 
 
 ~~~sql
@@ -75,8 +75,7 @@ order by의 뒤에 오는 인자를 통해 정렬 순서를 결정한다. 다수
 
 ### 문제 5.
 
-> Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates.
-
+> STATION 테이블에서 CITY의 이름이 모음 (i.e., a, e, i, o, or u)으로 시작하는 값을 구하라. 중복된 값이 있어선 안된다.
 
 ~~~sql
 select distinct city from station where city like "a%" or city like "e%" or city like "i%" or city like "o%" or city like "u%";
