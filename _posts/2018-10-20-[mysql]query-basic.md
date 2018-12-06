@@ -120,3 +120,27 @@ select Name from STUDENTS where Marks>75 order by right(Name, 3), ID
 ~~~sql
 select name from Employee where months<10 and salary>2000 order by employee_id
 ~~~
+
+### 문제. 일본 인구
+
+> 일본 도시 인구의 총합을 구하라.
+
+~~~sql
+select sum(POPULATION) from CITY where COUNTRYCODE='JPN';
+~~~
+
+### 문제. 인구차
+
+> 인구가 가장 많은 도시와 적은 도시의 인구수 차를 구하라
+
+~~~sql
+select max(POPULATION) - min(POPULATION) from CITY;
+~~~
+
+### 문제. 큰 실수를 저지르다
+
+> Samantha는 전 직원들의 평균 월급을 계산하는 업무를 진행하고 있었다. 계산을 다 마치고 나서야 그녀의 키보드에서 `0` 키가 고장났다는 사실을 깨닳았다. 실제 평균 급료와 잘못 계산된 급료의 차이를 구하라.
+
+~~~sql
+select CEIL((SUM(salary)/count(salary)) - (sum(replace(salary,'0',''))/count(salary))) from EMPLOYEES;
+~~~
