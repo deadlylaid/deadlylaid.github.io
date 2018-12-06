@@ -144,3 +144,7 @@ select max(POPULATION) - min(POPULATION) from CITY;
 ~~~sql
 select CEIL((SUM(salary)/count(salary)) - (sum(replace(salary,'0',''))/count(salary))) from EMPLOYEES;
 ~~~
+
+CEIL 함수는 매개변수로 받은 숫자와 같거나 큰 수 중에서 가장 작은 수를 반환한다.[^footnote2]
+
+[^footnote2]:[수학함수 CEIL](http://tcpschool.com/mysql/mysql_builtInFunction_math)
