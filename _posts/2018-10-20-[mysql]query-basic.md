@@ -148,3 +148,11 @@ select CEIL((SUM(salary)/count(salary)) - (sum(replace(salary,'0',''))/count(sal
 CEIL 함수는 매개변수로 받은 숫자와 같거나 큰 수 중에서 가장 작은 수를 반환한다.[^footnote2]
 
 [^footnote2]:[수학함수 CEIL](http://tcpschool.com/mysql/mysql_builtInFunction_math)
+
+### 문제. 최고 수익자
+
+> EMPLOYEE 테이블에서 $$months*salary$$  $5\cdot 5$를 합쳐서 직원들의 수익을 계산하였다. 최고 수익자의 수익금과 그와 같은 수익을 올린 직원이 총 몇 명인지 구하라.
+
+~~~sql
+select max(months*salary), count(*) from employee where (months*salary) = (select max(months*salary) from employee)
+~~~
