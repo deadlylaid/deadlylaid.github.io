@@ -167,8 +167,32 @@ select round(sum(LAT_N),2), round(sum(LONG_W),2) from STATION;
 
 ### 문제. 기상청13
 
-> LAT_N의 크기가 $$38.7880$$ 보다 크고  $$137.2345$$ 보다 작은 기상청의 LAT_N 값의 총합을 구하고 수소 넷째 짜리 까지 표기하라
+> LAT_N의 크기가 $$38.7880$$ 보다 크고  $$137.2345$$ 보다 작은 기상청의 LAT_N 값의 총합을 구하고 수소 넷째 자리 까지 표기하라
 
 ~~~sql
 select round(sum(LAT_N),4) from STATION where LAT_N > 38.788 and LAT_N < 137.2345
+~~~
+
+### 문제. 기상청14
+
+> LAT_N의 크기가 $$137.2345$$ 보다 작은 값 중에서 가장 큰 값을 구하고 소수 넷자 짜리 까지 표기하라.
+
+~~~sql
+select round(sum(LAT_N), 4) from STATION where LAT_N < 137.2345
+~~~ 
+
+### 문제. 기상청15
+
+> LAT_N의 크기가 $$137.2345$$ 보다 작은 값 중에서 가장 큰 값의 LONG_W를 소수 넷째 자리 까지 표기하라
+
+~~~sql
+select round(sum(LONG_W),4) from STATION where LAT_N = (select max(LAT_N) from STATION where LAT_N < 137.2345)
+~~~
+
+### 문제. 기상청16
+
+> LAT_N의 크기가 $$38.7780$$ 보다 큰 값 중에서 가장 작은 값을 소수 넷째 자리 까지 표기하라
+
+~~~sql
+select round(min(LAT_N),4) from STATION where LAT_N > 38.7780
 ~~~
