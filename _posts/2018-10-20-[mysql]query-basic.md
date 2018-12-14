@@ -196,3 +196,11 @@ select round(sum(LONG_W),4) from STATION where LAT_N = (select max(LAT_N) from S
 ~~~sql
 select round(min(LAT_N),4) from STATION where LAT_N > 38.7780
 ~~~
+
+### 문제. 기상청17
+
+> LAT_N 크기가 $$38.7780$$ 보다 큰 값 중에서 가장 작은 값을 갖는 레코드의 LONG_W 값을 구하라
+
+~~~sql
+select round(LONG_W,4) from STATION where LAT_N = (select min(LAT_N) from station where LAT_N>38.7780)
+~~~
