@@ -157,7 +157,7 @@ CEIL 함수는 매개변수로 받은 숫자와 같거나 큰 수 중에서 가�
 select max(months*salary), count(*) from employee where (months*salary) = (select max(months*salary) from employee)
 ~~~
 
-### 문제. 기상청2
+### 문제. 기후 관측소2
 
 > LAT_N, LONG_W 각각의 총합을 구하고 소수 둘째 짜리 까지 표현하라
 
@@ -165,7 +165,7 @@ select max(months*salary), count(*) from employee where (months*salary) = (selec
 select round(sum(LAT_N),2), round(sum(LONG_W),2) from STATION;
 ~~~
 
-### 문제. 기상청13
+### 문제. 기후 관측소13
 
 > LAT_N의 크기가 $$38.7880$$ 보다 크고  $$137.2345$$ 보다 작은 기상청의 LAT_N 값의 총합을 구하고 수소 넷째 자리 까지 표기하라
 
@@ -173,7 +173,7 @@ select round(sum(LAT_N),2), round(sum(LONG_W),2) from STATION;
 select round(sum(LAT_N),4) from STATION where LAT_N > 38.788 and LAT_N < 137.2345
 ~~~
 
-### 문제. 기상청14
+### 문제. 기후 관측소14
 
 > LAT_N의 크기가 $$137.2345$$ 보다 작은 값 중에서 가장 큰 값을 구하고 소수 넷자 짜리 까지 표기하라.
 
@@ -181,7 +181,7 @@ select round(sum(LAT_N),4) from STATION where LAT_N > 38.788 and LAT_N < 137.234
 select round(sum(LAT_N), 4) from STATION where LAT_N < 137.2345
 ~~~ 
 
-### 문제. 기상청15
+### 문제. 기후 관측소15
 
 > LAT_N의 크기가 $$137.2345$$ 보다 작은 값 중에서 가장 큰 값의 LONG_W를 소수 넷째 자리 까지 표기하라
 
@@ -189,7 +189,7 @@ select round(sum(LAT_N), 4) from STATION where LAT_N < 137.2345
 select round(sum(LONG_W),4) from STATION where LAT_N = (select max(LAT_N) from STATION where LAT_N < 137.2345)
 ~~~
 
-### 문제. 기상청16
+### 문제. 기후 관측소16
 
 > LAT_N의 크기가 $$38.7780$$ 보다 큰 값 중에서 가장 작은 값을 소수 넷째 자리 까지 표기하라
 
@@ -197,10 +197,20 @@ select round(sum(LONG_W),4) from STATION where LAT_N = (select max(LAT_N) from S
 select round(min(LAT_N),4) from STATION where LAT_N > 38.7780
 ~~~
 
-### 문제. 기상청17
+### 문제. 기후 관측소17
 
 > LAT_N 크기가 $$38.7780$$ 보다 큰 값 중에서 가장 작은 값을 갖는 레코드의 LONG_W 값을 구하라
 
 ~~~sql
 select round(LONG_W,4) from STATION where LAT_N = (select min(LAT_N) from station where LAT_N>38.7780)
 ~~~
+
+### 문제. 기후 관측소18
+
+> LAT_N, LONG_W 의 값이 가장 작은 좌표 $$P_1$$ 과 LAT_N, LONG_W 의 값이 가장 큰 좌표 $$P_2$$ 사이의 $$Manhattan Distance$$[^footnote3] 를 구하라
+
+~~~sql
+select round(abs(min(LAT_N)-max(LAT_N)) + abs(min(LONG_W) - max(LONG_W)),4) from STATION
+~~~
+
+[^footnote3]:[Manhattan Distance](https://xlinux.nist.gov/dads/HTML/manhattanDistance.html)
